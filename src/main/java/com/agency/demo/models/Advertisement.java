@@ -3,6 +3,8 @@ package com.agency.demo.models;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name="adverts")
 public class Advertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
