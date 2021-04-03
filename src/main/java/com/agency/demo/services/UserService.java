@@ -5,6 +5,9 @@ import com.agency.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -21,5 +24,21 @@ public class UserService {
 
     public User getUserByNumber(String number){
         return userRepository.findUserByPhoneNumber(number).get();
+    }
+
+    public User getUserById(long id){
+        return userRepository.findById(id).get();
+    }
+
+    public Iterable<User> getAll(){
+        return userRepository.findAll();
+    }
+
+    public void updateUser(User user){
+        userRepository.save(user);
+    }
+
+    public void deleteUser(long id){
+        userRepository.deleteById(id);
     }
 }

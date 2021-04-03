@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <title>Real estate agency</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/static/css/style.css"/>
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+        <script src="/static/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid"style="background-color: #f5cf89;">
+          <a class="navbar-brand" href="#" id="company">
+            <img src="/static/assets/logo.png" alt="" id="logo">
+            <span>Real estate agency</span>
+          </a>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Estates
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                  <li><a class="dropdown-item" href="#">Apartments</a></li>
+                  <li><a class="dropdown-item" href="#">Private houses</a></li>
+                  <li><a class="dropdown-item" href="#">Offices</a></li>
+                  <li><a class="dropdown-item" href="#">Land plots</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Realtors</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contacts</a>
+              </li>
+            </ul>
+            <div id="authsection">
+              <button class="btn btn-outline-dark btn-lg">Sign in</button>
+              <button class="btn btn-outline-dark btn-lg">Sign up</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div id="content" class="container-fluid row justify-content-center">
+        <form action="#" method="GET" id="search_panel" class="col-md-10  ">
+          <div class="container-fluid row">
+            <div class="row g2 justify-content-center">
+              <h2 class="col-md-8 fs-2 align-middle">Look for the estate you wish</h2>
+            </div>
+            <div class="row g-2 justify-content-center">
+              <div class="col-md-8">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="address_search" >
+                  <label for="address_search">Address</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-2 justify-content-center">
+              <div class="col-md-2">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="cost_min" min="0" value="0" step="1000">
+                  <label for="cost_min">Minimal cost</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="cost_max" min="100000" value="100000" step="1000">
+                  <label for="cost_max">Maximal cost</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="area_min" min="0" value="0" step="0.1">
+                  <label for="area_min">Minimal area</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="area_max" min="20" value="20" step="0.1">
+                  <label for="area_max">Maximal area</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-2 justify-content-center">
+              <div class="col-md-2">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="floors" min="1" value="1" step="1">
+                  <label for="floors">Floors</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="rooms" min="1" value="1" step="1">
+                  <label for="rooms">Rooms</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-floating">
+                  <select class="form-select" id="type">
+                    <option value="1" selected>Apartment</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <label for="type">Estate type</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-floating">
+                  <select class="form-select" id="state">
+                    <option value="1" selected>Good</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <label for="type">Estate state</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-2 justify-content-center">
+              <input type="submit" class="btn btn-success btn-lg col-md-8" value="Search"/>
+            </div>
+          </div>
+        </form>
+
+        <div id="adverts" class="col-md-10">
+          <ul id="offers">
+            <li>
+                123
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <footer>
+        
+      </footer>
+    </body>
+</html>

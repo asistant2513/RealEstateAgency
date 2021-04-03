@@ -1,5 +1,6 @@
 package com.agency.demo.services;
 
+import com.agency.demo.models.Estate;
 import com.agency.demo.repositories.EstateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,7 @@ public class EstateService {
         this.estateRepository = estateRepository;
     }
 
-
+    public Estate getEstateByID(long id){
+        return estateRepository.findById(id).get();
+    }
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin panel</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid p-4 justify-content-center col-6">
+        <div class="row p-2">
+            <h1 class="fs-2" style="text-align: center;">Administration panel</h1>
+        </div>
+        <div class="row p-2">
+            <a th:href="@{/admin/users}" class="row m-2"><button class="btn btn-primary btn-lg ">Users</button></a>
+            <a href="#" class="row m-2"><button class="btn btn-primary btn-lg">Realtors</button></a>
+            <a href="#" class="row m-2"><button class="btn btn-primary btn-lg">Estates</button></a>
+            <a href="#" class="row m-2"><button class="btn btn-primary btn-lg">Advertisements</button></a>
+        </div>
+    </div>
+
+</body>
+</html>

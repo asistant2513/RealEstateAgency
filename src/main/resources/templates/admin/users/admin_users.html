@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrator: Users</title>
+</head>
+<body>
+
+    <div>
+        <table border="1px">
+            <tr>
+                <th>ID</th>
+                <th>Phone number</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Registration date</th>
+                <th>Role</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.getId()}">user_id</td>
+                <td th:text="${user.getPhoneNumber()}">user_num</td>
+                <td th:text="${user.getName()}">user_name</td>
+                <td th:text="${user.getSurname()}">user_sname</td>
+                <td th:text="${user.getRegistrationDate().toString()}">user_regdate</td>
+                <td th:text="${user.getRole().toString()}">user_role</td>
+                <td><a th:href="@{~/admin/users/{id}(id=${user.getId()})}"><buttun>Edit</buttun></a></td>
+            </tr>
+        </table>
+        <a th:href="@{/admin/users/add}"><button>Add user</button></a>
+    </div>
+
+</body>
+</html>

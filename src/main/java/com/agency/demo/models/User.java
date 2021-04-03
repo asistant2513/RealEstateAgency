@@ -30,13 +30,13 @@ public class User {
     private LocalDate registrationDate;
 
     @Column(name="role")
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     //End of Private section
 
     public User(){
-
+        this.registrationDate = LocalDate.now();
     }
 
     public User(String phoneNumber,

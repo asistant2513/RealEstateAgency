@@ -34,6 +34,7 @@ public class Advertisement {
         this.description = description;
         this.realtor = realtor;
         this.estate = estate;
+        this.dateCreated = LocalDate.now();
     }
 
     public long getId() {
