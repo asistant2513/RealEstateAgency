@@ -3,6 +3,7 @@ package com.agency.demo.models;
 import com.agency.demo.enums.UserRole;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="realtors")
@@ -20,6 +21,9 @@ public class Realtor {
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    @OneToMany(mappedBy = "realtor")
+    Set<Advertisement> adverts;
 
     //End of Private section
     public Realtor(){
@@ -53,5 +57,6 @@ public class Realtor {
 
     public void setUser(User user) {
         this.user = user;
+        this.user.setRole(UserRole.REALTOR);
     }
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+<form th:method=PUT th:action="@{/admin/realtors/{id}(id=${realtor.getId()})}" th:object="${realtor}">
+    <label for="role">User:</label>
+    <select id="role" th:field="*{user}">
+        <option th:each="user : ${availableUsers}" th:value="${user.getId()}" th:text="${'#'+ user.getId() + ' ' + user.getName() + ' ' + user.getSurname()}">VALUE</option>
+    </select>
+    <br/>
+    <input type="submit" value="Apply"/>
+</form>
+</body>
+</html>

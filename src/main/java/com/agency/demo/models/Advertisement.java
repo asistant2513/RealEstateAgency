@@ -19,7 +19,7 @@ public class Advertisement {
     @Column(name="date_created")
     private LocalDate dateCreated;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="realtor_id", referencedColumnName = "id")
     private Realtor realtor;
 

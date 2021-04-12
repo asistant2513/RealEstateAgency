@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add realtor</title>
+</head>
+<body>
+<form th:method=POST th:action="@{/admin/realtors/add}" th:object="${realtor}">
+    <label for="role">User:</label>
+    <select id="role" th:field="*{user}">
+        <option th:each="user : ${availableUsers}" th:value="${user}" th:text="${'#'+ user.getId() + ' '+ user.getName() + ' ' + user.getSurname()}">VALUE</option>
+    </select>
+    <br/>
+    <input type="submit" value="Add"/>
+</form>
+<br/>
+</body>
+</html>

@@ -21,4 +21,12 @@ public class RealtorService {
     public Realtor getById(long id){
         return realtorRepository.findById(id).get();
     }
+
+    public Iterable<Realtor> getAll(){
+        return realtorRepository.findAll();
+    }
+
+    public void deleteRealtor(long id){
+        realtorRepository.deleteById(id);
+    }
 }

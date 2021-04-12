@@ -1,5 +1,6 @@
 package com.agency.demo.services;
 
+import com.agency.demo.enums.UserRole;
 import com.agency.demo.models.User;
 import com.agency.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class UserService {
@@ -40,5 +42,9 @@ public class UserService {
 
     public void deleteUser(long id){
         userRepository.deleteById(id);
+    }
+
+    public List<User> getUsersWithDefaultRole(){
+        return userRepository.findUsersByRoleEquals(UserRole.USER);
     }
 }

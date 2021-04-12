@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrator: Estates</title>
+</head>
+<body>
+
+<div>
+    <table border="1px">
+        <tr>
+            <th>ID</th>
+            <th>Address</th>
+            <th>Area</th>
+            <th>Cost</th>
+            <th>Floors</th>
+            <th>Rooms</th>
+            <th>State</th>
+            <th>Type</th>
+        </tr>
+        <tr th:each="realtor : ${estates}">
+            <td th:text="${realtor.getId()}">realtor_id</td>
+            <td th:text="${realtor.getRating()}">realtor_rating</td>
+            <td>
+                <a th:text="${realtor.getUser().getName()} + ${realtor.getUser().getSurname()}"
+                   th:href="@{~/admin/users/{id}(id=${realtor.getUser().getId()})}">user_id</a>
+            </td>
+            <td><a th:href="@{~/admin/realtors/{id}(id=${realtor.getId()})}"><buttun>Edit</buttun></a></td>
+        </tr>
+    </table>
+    <a th:href="@{/admin/realtors/add}"><button>Add realtor</button></a>
+</div>
+
+</body>
+</html>
