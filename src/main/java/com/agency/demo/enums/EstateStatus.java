@@ -4,7 +4,8 @@ public enum EstateStatus {
     NEEDS_RENOVATION("Needs renovation"),
     NEW_BUILDING("New building"),
     GOOD("Good"),
-    AFTER_RENOVATION("After renovation");
+    AFTER_RENOVATION("After renovation"),
+    NOT_APPLIABLE("Not appliable");
 
     private String status;
 

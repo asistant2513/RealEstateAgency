@@ -17,18 +17,21 @@
             <th>Rooms</th>
             <th>State</th>
             <th>Type</th>
+            <th>Edit</th>
         </tr>
-        <tr th:each="realtor : ${estates}">
-            <td th:text="${realtor.getId()}">realtor_id</td>
-            <td th:text="${realtor.getRating()}">realtor_rating</td>
-            <td>
-                <a th:text="${realtor.getUser().getName()} + ${realtor.getUser().getSurname()}"
-                   th:href="@{~/admin/users/{id}(id=${realtor.getUser().getId()})}">user_id</a>
-            </td>
-            <td><a th:href="@{~/admin/realtors/{id}(id=${realtor.getId()})}"><buttun>Edit</buttun></a></td>
+        <tr th:each="estate : ${estates}">
+            <td th:text="${estate.getId()}">estate_id</td>
+            <td th:text="${estate.getAddress()}">estate_address</td>
+            <td th:text="${estate.getArea()}">estate_area</td>
+            <td th:text="${estate.getCost()}">estate_cost</td>
+            <td th:text="${estate.getFloors()}">estate_floors</td>
+            <td th:text="${estate.getRooms()}">estate_rooms</td>
+            <td th:text="${estate.getStatus()}">estate_status</td>
+            <td th:text="${estate.getType()}">estate_type</td>
+            <td><a th:href="@{~/admin/estates/{id}(id=${estate.getId()})}"><buttun>Edit</buttun></a></td>
         </tr>
     </table>
-    <a th:href="@{/admin/realtors/add}"><button>Add realtor</button></a>
+    <a th:href="@{/admin/estates/add}"><button>Add estate</button></a>
 </div>
 
 </body>

@@ -18,4 +18,20 @@ public class EstateService {
     public Estate getEstateByID(long id){
         return estateRepository.findById(id).get();
     }
+
+    public Iterable<Estate> getAll(){
+        return estateRepository.findAll();
+    }
+
+    public void saveEstate(Estate e){
+        estateRepository.save(e);
+    }
+
+    public void deleteEstateByID(long id){
+        estateRepository.deleteById(id);
+    }
+
+    public Iterable<Estate> getAllWithoutAdverts(){
+        return estateRepository.getAllEstatesWithoutAdvert();
+    }
 }

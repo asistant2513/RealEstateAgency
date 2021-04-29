@@ -13,5 +13,9 @@
     <br/>
     <input type="submit" value="Apply"/>
 </form>
+<br/>
+<form th:method=DELETE th:action="@{/admin/realtors/{id}(id=${realtor.getId()})}" th:object="${realtor}">
+    <input type="submit" value="Delete"/>
+</form>
 </body>
 </html>

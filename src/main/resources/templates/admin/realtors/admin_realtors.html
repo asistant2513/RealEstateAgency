@@ -18,7 +18,7 @@
                 <td th:text="${realtor.getId()}">realtor_id</td>
                 <td th:text="${realtor.getRating()}">realtor_rating</td>
                 <td>
-                    <a th:text="${realtor.getUser().getName()} + ${realtor.getUser().getSurname()}"
+                    <a th:text="${realtor.getUser().getName()} + ' ' +${realtor.getUser().getSurname()}"
                        th:href="@{~/admin/users/{id}(id=${realtor.getUser().getId()})}">user_id</a>
                 </td>
                 <td><a th:href="@{~/admin/realtors/{id}(id=${realtor.getId()})}"><buttun>Edit</buttun></a></td>

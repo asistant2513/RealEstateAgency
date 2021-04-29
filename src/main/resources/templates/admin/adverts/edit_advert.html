@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method=PUT th:action="@{/admin/advertisements/{id}(id =${advert.getId()})}" th:object="${advert}">
+    <label for="title">Title:</label>
+    <textarea id="title" th:field="*{title}"></textarea>
+    <br/>
+    <label for="desc">Description:</label>
+    <textarea id="desc" th:field="*{description}"></textarea>
+    <br/>
+    <label for="date">Description:</label>
+    <input type="text"  id="date" th:value="*{dateCreated.getYear() + '-' + dateCreated.getMonthValue() + '-' + dateCreated.getDayOfMonth()}" readonly/>
+    <br/>
+    <label for="estate">Estate::</label>
+    <select id="estate" th:field="*{estate}">
+        <option th:each="curEstate : ${estates}" th:value="${curEstate.getId()}" th:text="${'#' + curEstate.getId() + ' '  + curEstate.getAddress()}">VALUE</option>
+    </select>
+    <br/>
+    <label for="realtor">Type:</label>
+    <select id="realtor" th:field="*{realtor}">
+        <option th:each="r : ${realtors}" th:value="${r.getId()}" th:text="${r.getUser().getName() + ' ' + r.getUser().getSurname()}">VALUE</option>
+    </select>
+    <br/>
+    <input type="submit" value="Add"/>
+</form>
+<br/>
+<form th:method=DELETE th:action="@{/admin/advertisements/{id}(id=${advert.getId()})}" th:object="${advert}">
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>

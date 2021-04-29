@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrator: Advertisements</title>
+</head>
+<body>
+
+<div>
+    <table border="1px">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date created</th>
+            <th>Realtor</th>
+            <th>Estate ID</th>
+            <th>Edit</th>
+        </tr>
+        <tr th:each="advert : ${adverts}">
+            <td th:text="${advert.getId()}">id</td>
+            <td th:text="${advert.getTitle()}">title</td>
+            <td th:text="${advert.getDescription()}">description</td>
+            <td th:text="${advert.getDateCreated()}">description</td>
+            <td><a th:href="@{~/admin/users/{id}(id=${advert.getRealtor().getUser().getId()})}" th:text="${advert.getRealtor().getUser().getName() + ' ' + advert.getRealtor().getUser().getSurname()}">realtor</a></td>
+            <td><a th:href="@{~/admin/estates/{id}(id=${advert.getEstate().getId()})}" th:text="${advert.getEstate().getId()}"></a></td>
+            <td><a th:href="@{~/admin/advertisements/{id}(id=${advert.getId()})}"><buttun>Edit</buttun></a></td>
+        </tr>
+    </table>
+    <a th:href="@{~/admin/advertisements/add}"><button>Add estate</button></a>
+</div>
+
+</body>
+</html>

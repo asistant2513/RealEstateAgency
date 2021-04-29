@@ -1,17 +1,16 @@
 package com.agency.demo.controllers;
 
+import com.agency.demo.enums.EstateStatus;
+import com.agency.demo.enums.EstateType;
 import com.agency.demo.enums.UserRole;
-import com.agency.demo.models.Realtor;
-import com.agency.demo.models.User;
-import com.agency.demo.services.AdvertisementService;
-import com.agency.demo.services.EstateService;
-import com.agency.demo.services.RealtorService;
-import com.agency.demo.services.UserService;
+import com.agency.demo.models.*;
+import com.agency.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/admin")
@@ -135,8 +134,120 @@ public class AdminController {
 
     @DeleteMapping("/realtors/{id}")
     public String deleteRealtor(@PathVariable("id") long id){
+        Realtor r = realtorService.getById(id);
+        r.getUser().setRole(UserRole.USER);
+        userService.saveUser(r.getUser());
         realtorService.deleteRealtor(id);
         return "redirect:/admin/realtors";
     }
 
+    /* Admin panel controller for Estates */
+
+    @GetMapping("/estates")
+    public String goToEstatesAdministration(Model model){
+        Iterable<Estate> estates = estateService.getAll();
+        model.addAttribute("estates", estates);
+        return "admin/estates/admin_estates";
+    }
+
+    @GetMapping("/estates/add")
+    public String goToAddEstate(Model model){
+        model.addAttribute("states", EstateStatus.values());
+        model.addAttribute("types", EstateType.values());
+        model.addAttribute("estate", new Estate());
+        return "admin/estates/add_estate";
+    }
+
+    @PostMapping("/estates/add")
+    public String addEstate(@ModelAttribute("estate") Estate estate){
+        estateService.saveEstate(estate);
+        return "redirect:/admin/estates";
+    }
+
+    @GetMapping("/estates/{id}")
+    public String editEstateByID(@PathVariable("id") long id, Model model , HttpSession session){
+        Estate e = estateService.getEstateByID(id);
+        session.setAttribute("estate",e);
+        model.addAttribute("types",EstateType.values());
+        model.addAttribute("statuses",EstateStatus.values());
+        model.addAttribute("estate", e);
+        return "admin/estates/edit_estate";
+    }
+
+    @PutMapping("/estates/{id}")
+    public String editEstate(@ModelAttribute("estate") Estate e,
+                              @SessionAttribute("estate") Estate toUpdate,
+                              HttpSession session){
+        toUpdate.setAddress(e.getAddress());
+        toUpdate.setArea(e.getArea());
+        toUpdate.setCost(e.getCost());
+        toUpdate.setFloors(e.getFloors());
+        toUpdate.setRooms(e.getRooms());
+        toUpdate.setStatus(e.getStatus());
+        toUpdate.setType(e.getType());
+        session.removeAttribute("estate");
+        estateService.saveEstate(toUpdate);
+        return"redirect:/admin/estates";
+    }
+
+    @DeleteMapping("/estates/{id}")
+    public String deleteEstate(@PathVariable("id") long id){
+        estateService.deleteEstateByID(id);
+        return "redirect:/admin/estates";
+    }
+
+    /* Admin panel controller for ADVERTISEMENTS */
+
+    @GetMapping("/advertisements")
+    public String goToAdvertsAdministration(Model model){
+        Iterable<Advertisement> adverts = advertisementService.getAll();
+        model.addAttribute("adverts", adverts);
+        return "admin/adverts/admin_advert";
+    }
+
+    @GetMapping("/advertisements/add")
+    public String goToAddAdvert(Model model){
+        Iterable<Estate> estates = estateService.getAllWithoutAdverts();
+        model.addAttribute("realtors", realtorService.getAll());
+        model.addAttribute("estates", estates);
+        model.addAttribute("advert", new Advertisement());
+        return "admin/adverts/add_advert";
+    }
+
+    @PostMapping("/advertisements/add")
+    public String addAdvert(@ModelAttribute("advert") Advertisement advert){
+        advert.setDateCreated(LocalDate.now());
+        advertisementService.saveAdvert(advert);
+        return "redirect:/admin/advertisements";
+    }
+
+    @GetMapping("/advertisements/{id}")
+    public String goToEditAdvert(@PathVariable("id") long id, Model model , HttpSession session){
+        Advertisement a = advertisementService.getAdvertByID(id);
+        Iterable<Estate> estates = estateService.getAllWithoutAdverts();
+        session.setAttribute("advert",a);
+        model.addAttribute("realtors", realtorService.getAll());
+        model.addAttribute("estates", estates);
+        model.addAttribute("advert", a);
+        return "admin/adverts/edit_advert";
+    }
+
+    @PutMapping("/advertisements/{id}")
+    public String editAdvert(@ModelAttribute("advert") Advertisement e,
+                             @SessionAttribute("advert") Advertisement toUpdate,
+                             HttpSession session){
+        toUpdate.setTitle(e.getTitle());
+        toUpdate.setDescription(e.getDescription());
+        toUpdate.setEstate(e.getEstate());
+        toUpdate.setRealtor(e.getRealtor());
+        session.removeAttribute("advert");
+        advertisementService.saveAdvert(toUpdate);
+        return"redirect:/admin/advertisements";
+    }
+
+    @DeleteMapping("/advertisements/{id}")
+    public String deleteAdvert(@PathVariable("id") long id){
+        advertisementService.deleteAdvertByID(id);
+        return "redirect:/admin/advertisements";
+    }
 }

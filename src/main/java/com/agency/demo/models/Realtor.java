@@ -27,7 +27,7 @@ public class Realtor {
 
     //End of Private section
     public Realtor(){
-
+        
     }
 
     public Realtor(User user) {

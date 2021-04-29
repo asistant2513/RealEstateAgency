@@ -8,7 +8,7 @@
 <form th:method=POST th:action="@{/admin/realtors/add}" th:object="${realtor}">
     <label for="role">User:</label>
     <select id="role" th:field="*{user}">
-        <option th:each="user : ${availableUsers}" th:value="${user}" th:text="${'#'+ user.getId() + ' '+ user.getName() + ' ' + user.getSurname()}">VALUE</option>
+        <option th:each="current : ${availableUsers}" th:value="${current.getId()}" th:text="${'#'+ current.getId() + ' '+ current.getName() + ' ' + current.getSurname()}">VALUE</option>
     </select>
     <br/>
     <input type="submit" value="Add"/>
