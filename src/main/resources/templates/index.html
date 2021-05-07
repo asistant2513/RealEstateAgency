@@ -1,4 +1,4 @@
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Real estate agency</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -133,8 +133,49 @@
 
         <div id="adverts" class="col-md-10">
           <ul id="offers">
-            <li>
-                123
+            <li th:each="advert : ${adverts}">
+              <div class="single_offer row">
+                <div class="col-auto">
+                  <img src="/static/assets/1-xm.jpg" alt="" class="offer_img img-fluid rounded">
+                  <div class="row other">
+                    <h6>Realtor:</h6>
+                    <div class="row ">
+                      <img src="/static/assets/realtor.png" alt="" class="realtor_img col col-auto">
+                      <div class="col">
+                        <h5 class="col" th:text="${advert.getRealtor().getUser().getFullName()}">Name Surname</h5>
+                        <h6 th:text="'Rating: ' + ${advert.getRealtor().getRating()}">Rating: 0</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <h2 th:text="${advert.getTitle()}">Title</h2>
+                  <h5 class="costlb" th:text="${advert.getEstate().getCost()} + '$'">0$</h5>
+                  <p class="row p-2 description" th:text="${advert.getDescription()}">
+                    Description
+                  </p>
+                  <ul class="features">
+                    <li th:text="'Address: ' + ${advert.getEstate().getAddress()}">
+                      Address
+                    </li>
+                    <li th:text="'Area: ' + ${advert.getEstate().getArea()}">
+                      Area
+                    </li>
+                    <li th:text="'Count of rooms: ' + ${advert.getEstate().getRooms()}">
+                      Count of rooms
+                    </li>
+                    <li th:text="'Count of floors: ' + ${advert.getEstate().getFloors()}">
+                      Count of floors
+                    </li>
+                    <li th:text="'Type: ' + ${advert.getEstate().getType().getType()}">
+                      Type
+                    </li>
+                    <li th:text="'Status: ' + ${advert.getEstate().getStatus().getStatus()}">
+                      Status
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -142,7 +183,7 @@
 
 
       <footer>
-        
+
       </footer>
     </body>
 </html>

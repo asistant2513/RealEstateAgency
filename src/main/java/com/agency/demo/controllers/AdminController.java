@@ -64,6 +64,7 @@ public class AdminController {
         User u = userService.getUserById(id);
         session.setAttribute("user",u);
         model.addAttribute("user", u);
+        model.addAttribute("roles", UserRole.values());
         return "admin/users/edit_user";
     }
 
@@ -208,6 +209,9 @@ public class AdminController {
     @GetMapping("/advertisements/add")
     public String goToAddAdvert(Model model){
         Iterable<Estate> estates = estateService.getAllWithoutAdverts();
+        if(!estates.iterator().hasNext()){
+            model.addAttribute("hasEstates", false);
+        }
         model.addAttribute("realtors", realtorService.getAll());
         model.addAttribute("estates", estates);
         model.addAttribute("advert", new Advertisement());
@@ -223,8 +227,8 @@ public class AdminController {
 
     @GetMapping("/advertisements/{id}")
     public String goToEditAdvert(@PathVariable("id") long id, Model model , HttpSession session){
-        Advertisement a = advertisementService.getAdvertByID(id);
         Iterable<Estate> estates = estateService.getAllWithoutAdverts();
+        Advertisement a = advertisementService.getAdvertByID(id);
         session.setAttribute("advert",a);
         model.addAttribute("realtors", realtorService.getAll());
         model.addAttribute("estates", estates);

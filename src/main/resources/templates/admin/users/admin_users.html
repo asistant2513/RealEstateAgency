@@ -3,31 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Administrator: Users</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
-    <div>
-        <table border="1px">
-            <tr>
-                <th>ID</th>
-                <th>Phone number</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Registration date</th>
-                <th>Role</th>
-                <th>Edit</th>
-            </tr>
+    <div class="container">
+        <table class="table table-bordered table-light col-sm-8 m-5">
+            <thead class="table-primary">
+                <th scope="col">ID</th>
+                <th scope="col">Phone number</th>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Registration date</th>
+                <th scope="col">Role</th>
+                <th scope="col">Edit</th>
+            </thead>
             <tr th:each="user : ${users}">
-                <td th:text="${user.getId()}">user_id</td>
+                <th th:text="${user.getId()}" scope="row">user_id</th>
                 <td th:text="${user.getPhoneNumber()}">user_num</td>
                 <td th:text="${user.getName()}">user_name</td>
                 <td th:text="${user.getSurname()}">user_sname</td>
                 <td th:text="${user.getRegistrationDate().toString()}">user_regdate</td>
                 <td th:text="${user.getRole().toString()}">user_role</td>
-                <td><a th:href="@{~/admin/users/{id}(id=${user.getId()})}"><buttun>Edit</buttun></a></td>
+                <td><a th:href="@{~/admin/users/{id}(id=${user.getId()})}"><button class="btn btn-primary">Edit</button></a></td>
             </tr>
         </table>
-        <a th:href="@{/admin/users/add}"><button>Add user</button></a>
+        <div class="col-md-8 m-5">
+            <a th:href="@{~/admin/}"><button class="btn btn-secondary">Back</button></a>
+            <a th:href="@{~/admin/users/add}"><button class="btn btn-success">Add user</button></a>
+        </div>
     </div>
 
 </body>

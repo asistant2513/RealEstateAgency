@@ -84,4 +84,13 @@ public class Advertisement {
     public void setEstate(Estate estate) {
         this.estate = estate;
     }
+
+    public String getFormattedDate(){
+        return new StringBuilder().append(dateCreated
+                .getYear()).append('-')
+                .append(dateCreated.getMonthValue())
+                .append('-')
+                .append(dateCreated.getDayOfMonth())
+                .toString();
+    }
 }

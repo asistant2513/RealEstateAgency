@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit user</title>
-</head>
-<body>
-    <form th:method=PUT th:action="@{/admin/users/{id}(id=${user.getId()})}" th:object="${user}">
-        <label for="name">Name:</label>
-        <input type="text" th:field="*{name}" id="name"/>
-        <br/>
-        <label for="sname">Surname:</label>
-        <input type="text" th:field="*{surname}" id="sname"/>
-        <br/>
-        <label for="pnum">Phone number:</label>
-        <input type="text" th:field="*{phoneNumber}" id="pnum"/>
-        <br/>
-        <input type="submit" value="Apply"/>
-    </form>
-    <br/>
-    <form th:method=DELETE th:action="@{/admin/users/{id}(id=${user.getId()})}" th:object="${user}">
-        <input type="submit" value="Delete"/>
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit user</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/static/css/style.css"/>
+
+        <script src="/static/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid row justify-content-center">
+            <div class="row col-6 m-4">
+                <h1 class="col-6 fs-2">Edit user #<span th:text="${user.getId()}"></span></h1>
+            </div>
+            <form th:method=PUT th:action="@{/admin/users/{id}(id=${user.getId()})}" th:object="${user}" id="edit" class="col-6">
+                <div class="form-floating">
+                    <input type="text" th:field="*{name}" id="name" class="form-control"/>
+                    <label for="name">Name:</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" th:field="*{surname}" id="sname" class="form-control"/>
+                    <label for="sname">Surname:</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" th:field="*{phoneNumber}" id="pnum" class="form-control"/>
+                    <label for="pnum">Phone number:</label>
+                </div>
+                <div class="form-floating">
+                    <select id="role" th:field="*{role}" class="form-select">
+                        <option th:each="role : ${roles}" th:value="${role}" th:text="${role}">VALUE</option>
+                    </select>
+                    <label for="role">Role:</label>
+                </div>
+                <div class="form-floating">
+                    <a th:href="@{/admin/users}" class="col-auto"><button type="button" class="btn btn-secondary col-auto">Back</button></a>
+                    <input type="submit" value="Delete" form="delete" class="btn btn-danger col-2"/>
+                    <input type="submit" value="Add" class="btn btn-success col-4" form="edit"/>
+                </div>
+            </form>
+            <br/>
+            <form th:method=DELETE th:action="@{/admin/users/{id}(id=${user.getId()})}" th:object="${user}" id="delete"></form>
+        </div>
+    </body>
 </html>

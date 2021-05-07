@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Administrator: Estates</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
-<div>
-    <table border="1px">
-        <tr>
-            <th>ID</th>
-            <th>Address</th>
-            <th>Area</th>
-            <th>Cost</th>
-            <th>Floors</th>
-            <th>Rooms</th>
-            <th>State</th>
-            <th>Type</th>
-            <th>Edit</th>
-        </tr>
+<div class="container">
+    <table class="table table-bordered table-light col-sm-8 m-5">
+        <thead class="table-primary">
+            <th scope="col">ID</th>
+            <th scope="col">Address</th>
+            <th scope="col">Area</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Floors</th>
+            <th scope="col">Rooms</th>
+            <th scope="col">State</th>
+            <th scope="col">Type</th>
+            <th scope="col">Edit</th>
+        </thead>
         <tr th:each="estate : ${estates}">
-            <td th:text="${estate.getId()}">estate_id</td>
+            <th th:text="${estate.getId()}" scope="row">estate_id</th>
             <td th:text="${estate.getAddress()}">estate_address</td>
             <td th:text="${estate.getArea()}">estate_area</td>
             <td th:text="${estate.getCost()}">estate_cost</td>
@@ -28,10 +32,13 @@
             <td th:text="${estate.getRooms()}">estate_rooms</td>
             <td th:text="${estate.getStatus()}">estate_status</td>
             <td th:text="${estate.getType()}">estate_type</td>
-            <td><a th:href="@{~/admin/estates/{id}(id=${estate.getId()})}"><buttun>Edit</buttun></a></td>
+            <td><a th:href="@{~/admin/estates/{id}(id=${estate.getId()})}"><button class="btn btn-primary">Edit</button></a></td>
         </tr>
     </table>
-    <a th:href="@{/admin/estates/add}"><button>Add estate</button></a>
+    <div class="col-md-8 m-5">
+        <a th:href="@{~/admin/}"><button class="btn btn-secondary">Back</button></a>
+        <a th:href="@{~/admin/estates/add}"><button class="btn btn-success">Add estate</button></a>
+    </div>
 </div>
 
 </body>

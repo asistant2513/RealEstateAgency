@@ -101,6 +101,14 @@ public class User {
         this.surname = surname;
     }
 
+    public String getFullName(){
+        return new StringBuilder()
+                .append(this.name)
+                .append(' ')
+                .append(this.surname)
+                .toString();
+    }
+
     public UserRole getRole() {
         return role;
     }

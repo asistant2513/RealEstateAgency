@@ -13,6 +13,7 @@ public enum EstateStatus {
         this.status = val;
     }
 
-
-
+    public String getStatus() {
+        return status;
+    }
 }

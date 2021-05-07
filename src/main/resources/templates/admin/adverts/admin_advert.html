@@ -3,31 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Administrator: Advertisements</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
-<div>
-    <table border="1px">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Date created</th>
-            <th>Realtor</th>
-            <th>Estate ID</th>
-            <th>Edit</th>
-        </tr>
+<div class="container">
+    <table class="table table-bordered table-light col-sm-8 m-5">
+        <thead class="table-primary">
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col" width="150px">Date Created</th>
+            <th scope="col" width="200px">Realtor</th>
+            <th scope="col" width="100px">Estate ID</th>
+            <th scope="col">Edit</th>
+        </thead>
         <tr th:each="advert : ${adverts}">
-            <td th:text="${advert.getId()}">id</td>
+            <th th:text="${advert.getId()}" scope="row">id</th>
             <td th:text="${advert.getTitle()}">title</td>
-            <td th:text="${advert.getDescription()}">description</td>
-            <td th:text="${advert.getDateCreated()}">description</td>
-            <td><a th:href="@{~/admin/users/{id}(id=${advert.getRealtor().getUser().getId()})}" th:text="${advert.getRealtor().getUser().getName() + ' ' + advert.getRealtor().getUser().getSurname()}">realtor</a></td>
+            <td th:text="${advert.getDescription().substring(0, 100) + '...'}">description</td>
+            <td th:text="${advert.getDateCreated()}">date</td>
+            <td>
+                <a th:href="@{~/admin/users/{id}(id=${advert.getRealtor().getUser().getId()})}" th:text="${advert.getRealtor().getUser().getName() + ' ' + advert.getRealtor().getUser().getSurname()}">realtor</a>
+            </td>
             <td><a th:href="@{~/admin/estates/{id}(id=${advert.getEstate().getId()})}" th:text="${advert.getEstate().getId()}"></a></td>
-            <td><a th:href="@{~/admin/advertisements/{id}(id=${advert.getId()})}"><buttun>Edit</buttun></a></td>
+            <td>
+                <a th:href="@{~/admin/advertisements/{id}(id=${advert.getId()})}">
+                    <button class="btn btn-primary">Edit</button>
+                </a>
+            </td>
         </tr>
     </table>
-    <a th:href="@{~/admin/advertisements/add}"><button>Add estate</button></a>
+    <div class="col-md-8 m-5">
+        <a th:href="@{/admin/}"><button type="button" class="btn btn-secondary">Back</button></a>
+        <a th:href="@{~/admin/advertisements/add}"><button class="btn btn-success col-md-4">Add advert</button></a>
+    </div>
 </div>
 
 </body>
